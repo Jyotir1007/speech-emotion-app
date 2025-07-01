@@ -35,7 +35,14 @@ def extract_feature(file, mfcc=True, chroma=True, mel=True):
     return result.reshape(1, -1)
 
 if uploaded_file is not None:
-    features = extract_feature(uploaded_file)
+    st.audio(uploaded_file, format="audio/wav")
+    features, waveform = extract_feature(uploaded_file)
+    fig, ax = plt.subplots()
+    ax.plot(waveform)
+    ax.set_title("Audio Waveform (First 3 seconds)")
+    ax.set_xlabel("Samples")
+    ax.set_ylabel("Amplitude")
+    st.pyplot(fig)
     prediction = model.predict(features)
     emotion = encoder.inverse_transform(prediction)[0]
     st.success(f"Predicted Emotion: **{emotion}**")
