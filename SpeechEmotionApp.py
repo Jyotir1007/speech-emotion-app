@@ -19,7 +19,7 @@ def extract_feature(file, mfcc=True, chroma=True, mel=True):
         sample_rate = sound_file.samplerate
 
         if len(X) < 2048:
-            st.error("Audio file too short. Please upload a valid WAV file with sufficient duration.")
+            st.error("❌ Audio file is too short. Please upload a longer WAV file (at least 1 second).")
             st.stop()
 
         if chroma:
