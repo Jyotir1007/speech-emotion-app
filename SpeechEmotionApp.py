@@ -18,10 +18,6 @@ def extract_feature(file, mfcc=True, chroma=True, mel=True):
         X = sound_file.read(dtype="float32")
         sample_rate = sound_file.samplerate
 
-        if len(X) < 2048:
-            st.error("❌ Audio file is too short. Please upload a longer WAV file (at least 1 second).")
-            st.stop()
-
         if chroma:
             stft = np.abs(librosa.stft(X))
 
