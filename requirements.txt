@@ -1,7 +1,7 @@
 streamlit
 numpy
 librosa
-scikit-learn
+scikit-learn==1.6.1
 soundfile
 joblib
 matplotlib
