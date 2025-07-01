@@ -28,11 +28,11 @@ st.header("🎤 Or speak now to detect emotion")
 ctx = webrtc_streamer(
     key="emotion-speech",
     mode="SENDRECV",
-    in_audio=True,
     audio_processor_factory=AudioProcessor,
     media_stream_constraints={"audio": True, "video": False},
     async_processing=True,
 )
+
 
 # Button to process speech after recording
 if st.button("🔍 Predict Emotion from Microphone"):
