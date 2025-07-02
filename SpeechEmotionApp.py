@@ -15,8 +15,9 @@ st.write("Upload an audio file (.wav) to detect the emotion.")
 uploaded_file = st.file_uploader("Choose a WAV file", type="wav")
 
 def extract_feature(file, mfcc=True, chroma=True, mel=True):
-    # Load only first 3 seconds to keep it consistent with training
-    X, sample_rate = librosa.load(file, sr=None, duration=3.0)
+    with sf.SoundFile(file) as sound_file:
+        X = sound_file.read(dtype="float32")
+        sample_rate = sound_file.samplerate
 
     # 🔒 Check for silence or extremely low energy
     if np.max(np.abs(X)) < 0.01:
